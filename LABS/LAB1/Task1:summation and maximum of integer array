@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int get_sum(const vector<int>& arr) {
+    int sum = 0;
+    for (int num : arr) sum += num;
+    return sum;
+}
+
+int get_max(const vector<int>& arr) {
+    int max = arr[0];
+    for (int num : arr)
+        if (num > max) max = num;
+    return max;
+}
+
+int main() {
+    int n;
+    cout << "Enter number of integers: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter " << n << " integers:\n";
+    for (int i = 0; i < n; ++i) cin >> arr[i];
+
+    cout << "Sum: " << get_sum(arr) << endl;
+    cout << "Maximum: " << get_max(arr) << endl;
+
+    return 0;
+}
