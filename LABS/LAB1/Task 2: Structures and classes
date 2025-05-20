@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Course {
+    string course_code;
+    string course_name;
+};
+
+struct Grade {
+    int mark;
+    char the_grade;
+
+    void calculate_grade() {
+        if (mark > 69) the_grade = 'A';
+        else if (mark > 59) the_grade = 'B';
+        else if (mark > 49) the_grade = 'C';
+        else if (mark > 39) the_grade = 'D';
+        else the_grade = 'E';
+    }
+};
+
+struct Student {
+    string reg_no;
+    string name;
+    int age;
+    Course course;
+    Grade grade;
+    bool grade_locked = false;
+
+    void input_details() {
+        cout << "Enter Reg No: "; getline(cin, reg_no);
+        cout << "Enter Name: "; getline(cin, name);
+        cout << "Enter Age: "; cin >> age; cin.ignore();
+        cout << "Enter Course Code: "; getline(cin, course.course_code);
+        cout << "Enter Course Name: "; getline(cin, course.course_name);
+    }
+
+    void update_details() {
+        cout << "Update Name: "; getline(cin, name);
+        cout << "Update Age: "; cin >> age; cin.ignore();
+    }
+
+    void set_marks() {
+        if (!grade_locked) {
+            cout << "Enter Marks: ";
+            cin >> grade.mark;
+            grade.calculate_grade();
+            grade_locked = true;
+            cout << "Grade Calculated: " << grade.the_grade << "\n";
+        } else {
+            cout << "Grade already set and locked.\n";
+        }
+    }
+
+    void display() const {
+        cout << reg_no << " | " << name << " | " << age << " | "
+             << course.course_code << " - " << course.course_name << " | "
+             << grade.mark << " (" << grade.the_grade << ")" << endl;
+    }
+};
